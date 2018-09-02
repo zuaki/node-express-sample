@@ -66,18 +66,18 @@ class UserRouter {
             const sex = req.body.sex;
             // 未入力チェック。
             if (!loginId || !password || !name || !age || !sex) {
-                res.render("index", { title: "Login", errorMessage: "LOGIN ID、PASSWORD、NAME、AGE、SEXは必須入力です。" });
+                res.render("user", { title: "Login", errorMessage: "LOGIN ID、PASSWORD、NAME、AGE、SEXは必須入力です。" });
                 return;
             }
             // 文字数チェック。
             var maxLength = 45;
             if (maxLength < loginId.length || maxLength < password.length || maxLength < name.length) {
-                res.render("index", { title: "Login", errorMessage: "LOGIN ID、PASSWORD、NAMEは" + maxLength + "文字以内で入力して下さい。" });
+                res.render("user", { title: "Login", errorMessage: "LOGIN ID、PASSWORD、NAMEは" + maxLength + "文字以内で入力して下さい。" });
                 return;
             }
             maxLength = 2;
             if (maxLength < sex.length) {
-                res.render("index", { title: "Login", errorMessage: "SEXは" + maxLength + "文字以内で入力して下さい。" });
+                res.render("user", { title: "Login", errorMessage: "SEXは" + maxLength + "文字以内で入力して下さい。" });
                 return;
             }
             // ここまできたら次の処理へ進める。

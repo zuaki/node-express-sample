@@ -41,8 +41,22 @@ class IndexRouter {
      */
     addLogin(router) {
         router.post("/", 
-        // 入力チェック。
+        // 入力チェック。  
+        this.loginValidation(), 
+        // 認証処理。
+        auth_1.getPassport().authenticate("local", { failureRedirect: "/", failureFlash: true }), 
+        // authenticate()で認証処理を行い、成功であれば以下のfunctionが実行される。
         (req, res, next) => {
+            // 認証成功の場合、TOPページを表示する
+            res.redirect("/top");
+        });
+    }
+    /**
+     * ログイン時の入力チェック処理。
+     * TODO:express-validatorミドルウェアを使用して、コード数を少なく、綺麗に書けるか検討する。
+     */
+    loginValidation() {
+        return (req, res, next) => {
             const loginId = req.body.loginId;
             const password = req.body.password;
             // 未入力チェック
@@ -58,14 +72,7 @@ class IndexRouter {
             }
             // ここまできたら次の処理へ進める。
             next();
-        }, 
-        // 認証処理。
-        auth_1.getPassport().authenticate("local", { failureRedirect: "/", failureFlash: true }), 
-        // authenticate()で認証処理を行い、成功であれば以下のfunctionが実行される。
-        (req, res, next) => {
-            // 認証成功の場合、TOPページを表示する
-            res.redirect("/top");
-        });
+        };
     }
 }
 exports.IndexRouter = IndexRouter;

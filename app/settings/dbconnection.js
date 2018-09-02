@@ -14,7 +14,8 @@ class DbConnection {
             host: "localhost",
             user: "root",
             password: "root",
-            database: "nodesumple04"
+            port: 3306,
+            database: "node-express-sample"
         });
     }
 }

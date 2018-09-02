@@ -63,7 +63,7 @@ class App {
         // リクエストにcookie属性を付与してくれる。
         this.app.use(cookieParser());
         // セッション情報を登録し、passportの認証処理を設定。
-        this.app.use(session({ secret: "sumple04", resave: true, saveUninitialized: true, cookie: { path: "/", maxAge: 1000 * 60 * 60 * 90 } }));
+        this.app.use(session({ secret: "node-express", resave: true, saveUninitialized: true, cookie: { path: "/", maxAge: 1000 * 60 * 60 * 90 } }));
         auth_1.useAuthMiddlewares(this.app);
         // flashを使用できるようにする。
         this.app.use(connectFlash());
