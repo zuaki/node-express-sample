@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  if users.length == 0
+    .container
+      .row
+        .twelve.columns
+          h1 User Not Found.
+  else
+    .container
+      .row
+        .twelve.columns
+          h1 Users
+      if message != null
+        .row
+          .twelve.columns
+            b.message #{message}
+      .row
+        .twelve.columns
+          table.u-full-width
+            thead
+              tr
+                th ID
+                th NAME
+                th AGE
+                th SEX
+                th 
+            - for (var i=0; i < users.length; i++) 
+              tbody
+                tr
+                  td #{users[i].id}
+                  td #{users[i].name}
+                  td #{users[i].age}
+                  td #{users[i].sex}
+                  td
+                    a.button(href="/user/" + users[i].id) EDIT
+                    a.button(href="/user/delete/" + users[i].id, method="post") DELETE
+      .row
+        .two.columns
+          a.button(href="/user") ADD
+        .two.columns
+          a.button(href="/top") BACK

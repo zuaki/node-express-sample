@@ -1,0 +1,78 @@
+extends layout
+
+block content
+  form(action="/user/edit", method="post")
+    .container
+      .row
+        .twelve.columns
+          h1 User
+      .row
+        if users[0].id
+          .six.columns
+            label(for="id") ID
+            div #{users[0].id}
+            input(
+              id="id"
+              name="id"
+              type="hidden"
+              value=users[0].id
+            ) 
+      .row
+        .six.columns
+          label(for="loginId") LOGIN ID
+          input.u-full-width(
+            type="text"
+            id="loginId"
+            name="loginId"
+            value=users[0].loginId
+          )
+      .row
+        .six.columns
+          label(for="password") PASSWORD
+          input.u-full-width(
+            type="password"
+            id="password"
+            name="password"
+            value=users[0].password
+          )
+      .row
+        .six.columns
+          label(for="name") NAME
+          input.u-full-width(
+            type="text"
+            id="name"
+            name="name"
+            value=users[0].name
+          )
+      .row
+        .six.columns
+          label(for="age") AGE
+          input.u-full-width(
+            type="text"
+            id="age"
+            name="age"
+            value=users[0].age
+          )
+      .row
+        .six.columns
+          label(for="sex") SEX
+          select(
+            id="sex"
+            name="sex"
+          )
+            option(value="男性", selected=(users[0].sex == "男性")) 男性
+            option(value="女性", selected=(users[0].sex == "女性")) 女性
+            option(value="不明", selected=(users[0].sex == "不明")) 不明
+      .row
+        .two.columns
+          input(
+            class="button-primary"
+            type="submit"
+            value="OK"
+          )
+        .two.columns
+          a.button(href="/users") BACK
+      .row
+        if errorMessage != null
+          .six.columns
+            b.error-message #{errorMessage}

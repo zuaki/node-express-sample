@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  form(action="/", method="post")
+    .container
+      .row
+        .twelve.columns
+          h1 Login
+      .row
+        .six.columns
+          label(for="loginId") LOGIN ID
+          input.u-full-width(
+            type="text"
+            placeholder="Input Your Id"
+            id="loginId"
+            name="loginId"
+            maxlength="45"
+          )
+      .row
+        .six.columns
+          label(for="password") PASSWORD
+          input.u-full-width(
+            type="password"
+            placeholder="Input Your Password"
+            id="password"
+            name="password"
+            maxlength="45"
+          )
+      .row
+        .twelve.columns
+          input(
+            class="button-primary"
+            type="submit"
+            value="LOGIN"
+          )
+          if errorMessage != null
+            div
+              b.error-message #{errorMessage}

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  .container
+    .row
+      .twelve.columns
+        h1 TOP
+    .row
+      .two.columns
+        a.button(href="/users") Users
+      .two.columns
+        form(action="/logout", method="post")
+          input(
+            class="button-primary"
+            type="submit"
+            value="Logout"
+          )
